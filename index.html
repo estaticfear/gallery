@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>three.js css3d - periodic table</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" rel="stylesheet" href="./css/main.css" />
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="menu">
+        <p>
+          Drag, scroll, or click the elements above.
+          <i id="pause-button" class="fas fa-pause"></i>
+        </p>
+        <button id="table">TABLE</button>
+        <button id="sphere">SPHERE</button>
+        <button id="helix">HELIX</button>
+        <button id="grid">GRID</button>
+      </div>
+
+      <script type="text/javascript" src="./js/urlParams.js"></script>
+
+      <script type="module">
+        import { init, animate } from "./js/display.js";
+        $("#photoDisplayModal").on("hidden.bs.modal", function () {
+          removeUrlParam("id");
+        });
+        init([
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 1,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 2,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 3,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 4,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 5,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 6,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 7,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 8,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+          {
+            alt: "Striped cat sleeping on bed in sunshine",
+            date: "Spring, 2020",
+            fpath:
+              "https://www.christophergreening.com/static/images/9cb237ef8b419491.jpg",
+            id: 9,
+            instagram_link: "https://www.instagram.com/p/B-FM4x2JizE/",
+            title: "Riley",
+          },
+        ]);
+        animate();
+
+        // Add view=id to URL on View click
+        $(document).ready(function () {
+          // If URL contains view query param open respective modal on page load
+          let id = getUrlParam("id");
+          if (id) {
+            $("#photo" + id).click();
+          }
+        });
+
+        // Previous/next button
+        $(".fa-angle-left").on("click", function () {
+          let id = parseInt(getUrlParam("id"));
+          $("#myModal").modal("hide");
+          removeUrlParam("id");
+          id--;
+          $("#photo" + id).click();
+        });
+        $(".fa-angle-right").on("click", function () {
+          let id = parseInt(getUrlParam("id"));
+          $("#myModal").modal("hide");
+          removeUrlParam("id");
+          id++;
+          $("#photo" + id).click();
+        });
+      </script>
+
+      <script type="module" src="./js/buttons.js"></script>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="photoDisplayModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="photoDisplayModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="photoDisplayModalLabel"></h3>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-date">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6></h6>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body">
+              <img />
+            </div>
+            <div class="modal-buttons">
+              <i class="fas fa-angle-left float-left"></i>
+              <i class="fas fa-angle-right float-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
