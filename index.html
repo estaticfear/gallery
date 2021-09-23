@@ -23,28 +23,37 @@
     <link type="text/css" rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <canvas id="bgCanvas"></canvas>
     <div id="main">
       <div id="menu">
         <p>
           Drag, scroll, or click the elements above.
           <i id="pause-button" class="fas fa-pause"></i>
         </p>
-        <button id="table">TABLE</button>
-        <button id="sphere">SPHERE</button>
-        <button id="helix">HELIX</button>
-        <button id="grid">GRID</button>
+        <button id="play-music">Play Music</button>
+        <button id="table">Table</button>
+        <button id="sphere">Sphere</button>
+        <button id="helix">Helix</button>
+        <button id="grid">Grid</button>
       </div>
 
       <script type="text/javascript" src="./js/urlParams.js"></script>
+      <script type="text/javascript" src="./js/background.js"></script>
 
       <script type="module">
         import { init, animate } from "./js/display.js";
         import { links } from "./links.js";
+        import { play } from "./js/audio.js";
+
         $("#photoDisplayModal").on("hidden.bs.modal", function () {
           removeUrlParam("id");
         });
         init(links);
         animate();
+
+        $("#play-music").on("click", function () {
+          play();
+        });
 
         // Add view=id to URL on View click
         $(document).ready(function () {
@@ -65,7 +74,6 @@
         });
         $(".fa-angle-right").on("click", function () {
           let id = parseInt(getUrlParam("id"));
-          console.log("id", id);
           $("#myModal").modal("hide");
           removeUrlParam("id");
           id++;
