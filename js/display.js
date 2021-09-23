@@ -177,9 +177,9 @@ function createTransformationButton(
   });
 }
 
-function showImageModal(i, images) {
+function showImageModal(i, images, randomId) {
   var img = images[i];
-  $("#photoDisplayModal img").attr("src", domain + img.fpath);
+  $("#photoDisplayModal img").attr("src", img.fpath);
   $("#photoDisplayModal h3").text(img.title);
   $("#photoDisplayModal h6").text(img.date);
 
@@ -212,6 +212,7 @@ function initImgObjects(scene, images) {
   /* Create 3D rendered img tags from a dynamically served array
     of img src's and add them to the scene */
   var objects = [];
+  var realImages = [];
   var randomKeys = [];
   while (randomKeys.length < 80) {
     var r = Math.floor(Math.random() * 100) + 1;
@@ -222,7 +223,11 @@ function initImgObjects(scene, images) {
     const img = document.createElement("img");
     img.src = domain + images[randomKeys[i]].fpath;
     img.alt = images[randomKeys[i]].alt;
-    img.id = "photo" + randomKeys[i];
+    img.id = "photo" + i;
+    realImages.push({
+      id: img.id,
+      fpath: img.src,
+    });
 
     // HACK: Android Chromium browsers don't render properly if the <img>
     // is embedded in an <a> or if the <img> has certain CSS (border-radius, hover
@@ -233,8 +238,7 @@ function initImgObjects(scene, images) {
       img.classList.add("fancy-rendered-img");
     }
     img.addEventListener("click", function () {
-      // window.open(img_src, photoDisplayModalblank");
-      showImageModal(randomKeys[i], images);
+      showImageModal(i, realImages, randomKeys[i]);
     });
 
     // Touch screen compatibility for image clicking
@@ -243,9 +247,8 @@ function initImgObjects(scene, images) {
       isSwiping = false;
     });
     img.addEventListener("touchend", function () {
-      console.log("end???");
       if (!isSwiping) {
-        showImageModal(i, images);
+        showImageModal(i, realImages, randomKeys[i]);
       }
     });
     img.addEventListener("touchmove", function () {

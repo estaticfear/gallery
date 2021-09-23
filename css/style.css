@@ -73,7 +73,7 @@ button:active {
 }
 
 .fancy-rendered-img {
-  max-width: 200px;
+  max-width: 300px;
 }
 
 .fancy-rendered-img:hover {
@@ -93,6 +93,7 @@ button:active {
 .modal-header .close {
   color: #fff;
   opacity: 1;
+  margin: 0;
 }
 
 .modal-title {
