@@ -6,6 +6,8 @@ import {
   CSS3DObject,
 } from "./lib/jsm/renderers/CSS3DRenderer.js";
 
+const domain = "http://gallery.localhost/photos/";
+
 let camera, scene, renderer, objects, vector, original_rotation;
 let controls;
 
@@ -177,7 +179,7 @@ function createTransformationButton(
 
 function showImageModal(i, images) {
   var img = images[i];
-  $("#photoDisplayModal img").attr("src", img.fpath);
+  $("#photoDisplayModal img").attr("src", domain + img.fpath);
   $("#photoDisplayModal h3").text(img.title);
   $("#photoDisplayModal h6").text(img.date);
 
@@ -210,12 +212,17 @@ function initImgObjects(scene, images) {
   /* Create 3D rendered img tags from a dynamically served array
     of img src's and add them to the scene */
   var objects = [];
-  for (let i = 0; i < images.length; i += 1) {
+  var randomKeys = [];
+  while (randomKeys.length < 80) {
+    var r = Math.floor(Math.random() * 100) + 1;
+    if (randomKeys.indexOf(r) === -1 && r < images.length - 1)
+      randomKeys.push(r);
+  }
+  for (let i = 0; i < randomKeys.length; i += 1) {
     const img = document.createElement("img");
-
-    img.src = images[i].fpath;
-    img.alt = images[i].alt;
-    img.id = "photo" + images[i].id;
+    img.src = domain + images[randomKeys[i]].fpath;
+    img.alt = images[randomKeys[i]].alt;
+    img.id = "photo" + randomKeys[i];
 
     // HACK: Android Chromium browsers don't render properly if the <img>
     // is embedded in an <a> or if the <img> has certain CSS (border-radius, hover
@@ -225,11 +232,9 @@ function initImgObjects(scene, images) {
     } else {
       img.classList.add("fancy-rendered-img");
     }
-    console.log("img", img);
     img.addEventListener("click", function () {
-      console.log("?????");
       // window.open(img_src, photoDisplayModalblank");
-      showImageModal(i, images);
+      showImageModal(randomKeys[i], images);
     });
 
     // Touch screen compatibility for image clicking

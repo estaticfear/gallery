@@ -72,6 +72,10 @@ button:active {
   background-color: rgba(0, 255, 255, 0.75);
 }
 
+.fancy-rendered-img {
+  max-width: 200px;
+}
+
 .fancy-rendered-img:hover {
   box-shadow: 0px 0px 30px 0px white;
 }
