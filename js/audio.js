@@ -1,7 +1,7 @@
 var audio;
 export function play() {
   if (!audio) {
-    audio = new Audio("/music/darling.mp3");
+    audio = new Audio("/gallery/music/darling.mp3");
     audio.loop = true;
   }
   audio.pause();
