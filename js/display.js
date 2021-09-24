@@ -215,7 +215,7 @@ function initImgObjects(scene, images) {
   var realImages = [];
   var randomKeys = [];
   while (randomKeys.length < 80) {
-    var r = Math.floor(Math.random() * 100) + 1;
+    var r = Math.floor(Math.random() * 1000) + 1;
     if (randomKeys.indexOf(r) === -1 && r < images.length - 1)
       randomKeys.push(r);
   }
