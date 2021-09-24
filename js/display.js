@@ -6,7 +6,7 @@ import {
   CSS3DObject,
 } from "./lib/jsm/renderers/CSS3DRenderer.js";
 
-const domain = "http://gallery.localhost/photos/";
+const domain = window.location.href + "/photos/";
 
 let camera, scene, renderer, objects, vector, original_rotation;
 let controls;
