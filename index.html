@@ -42,12 +42,16 @@
 
       <script type="module">
         import { init, animate } from "./js/display.js";
-        import { links } from "./links.js";
         import { play } from "./js/audio.js";
 
         $("#photoDisplayModal").on("hidden.bs.modal", function () {
           removeUrlParam("id");
         });
+        const max = 410; // 410 image in photo folder
+        const links = [];
+        for (let i = 1; i <= 410; i++) {
+          links.push({ fpath: `${i}.webp` });
+        }
         init(links);
         animate();
 
